@@ -3,7 +3,7 @@
 Below is a list of coding conventions that we at iCapps try to follow.
 
 - [Android](android-guidelines.md) Conventions used for Android projects.
-- [iOS Objective-C](ios-objective-guidelines.md) Conventions used for iOS projects written in Objective-C.
+- [iOS Objective-C](ios-objective-c-guidelines.md) Conventions used for iOS projects written in Objective-C.
 - [iOS Swift](ios-swift-guidelines.md) Conventions used for iOS projects written in Swift.
 - [Web](web-guidelines.md) Conventions used for web projects.
 
