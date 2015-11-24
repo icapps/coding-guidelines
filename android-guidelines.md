@@ -56,6 +56,8 @@ This style guide outlines the coding conventions of the Android teams at iCapps.
 
 New projects should follow the Android Gradle project structure that is defined on the [Android Gradle plugin user guide](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure).
 
+Add a readme file to the root of the project documenting the global structure of the app and perhaps some of the important classes. Also add details necessary for a new developer to start with the project such as login credentials.
+
 ## File Naming
 
 ## Class Files
@@ -260,64 +262,13 @@ There are conventions for using Android's Java libraries and tools. In some case
 ## Java Style Rules
 ## Use Javadoc Standard Comments
 
-Every file should have a copyright statement at the top. Then a package statement and import statements should follow, each block separated by a blank line. And then there is the class or interface declaration. In the Javadoc comments, describe what the class or interface does.
-```
-/*
- * Copyright (C) 2013 The Android Open Source Project 
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at 
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and 
- * limitations under the License.
- */
+Not every file should have a copyright, package and import statement or a description of what the class or interface does. Use short methods, make use of easy to understand method and parameter names. This will make documentation obsolete in most cases.
 
-package com.android.internal.foo;
-
-import android.os.Blah;
-import android.view.Yada;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-/**
- * Does X and Y and provides an abstraction for Z.
- */
-
-public class Foo {
-    ...
-}
-```
-Every class and nontrivial public method you write must contain a Javadoc comment with at least one sentence describing what the class or method does. This sentence should start with a 3rd person descriptive verb.
-
-Examples:
-```
-/** Returns the correctly rounded positive square root of a double value. */
-static double sqrt(double a) {
-    ...
-}
-```
-or
-```
-/**
- * Constructs a new String by converting the specified array of 
- * bytes using the platform's default character encoding.
- */
-public String(byte[] bytes) {
-    ...
-}
-```
-You do not need to write Javadoc for trivial get and set methods such as setFoo() if all your Javadoc would say is "sets Foo". If the method does something more complex (such as enforcing a constraint or having an important side effect), then you must document it. And if it's not obvious what the property "Foo" means, you should document it.
-
-Every method you write, whether public or otherwise, would benefit from Javadoc. Public methods are part of an API and therefore require Javadoc.
+If the method does something more complex (such as enforcing a constraint or having an important side effect), then you must document it. And if it's not obvious what the property "Foo" means, you should document it.
 
 Android does not currently enforce a specific style for writing Javadoc comments, but you should follow the instructions [How to Write Doc Comments for the Javadoc Tool](http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html).
+
+In case of a device specific fix or some obscure method, add a reference to the solution or explanation, eg: stackoverflow.
 
 ## Write Short Methods
 
@@ -733,14 +684,14 @@ Resource IDs and names are written in __lowercase_underscore__
 
 ## ID Naming
 
-IDs should be prefixed with the name of the element in lowercase underscore. For example:
+IDs should be prefixed with a descriptive name of the element in lowercase underscore. For example:
 
 
-| Element            | Prefix            |
+| Element            | Prefix examples            |
 | -----------------  | ----------------- |
-| `TextView`           | `text_`             |
-| `ImageView`          | `image_`            | 
-| `Button`             | `button_`           |   
+| `TextView`           | `text_` or `txt_` or `tv_`             |
+| `ImageView`          | `image_` or `img_` or `iv_`            | 
+| `Button`             | `button_` or `btn_`           |   
 | `Menu`               | `menu_`             |
 
 Image view example:
