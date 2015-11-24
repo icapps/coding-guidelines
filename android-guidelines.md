@@ -7,7 +7,7 @@ This style guide outlines the coding conventions of the Android teams at iCapps.
 ## Table of Contents
 
 * [Project Guidelines](#project-guidelines)
- * [Project Structure](#project-#structure)
+ * [Project Structure](#project-structure)
  * [File Naming](#file-naming)
    * [Class Files](#class-files)
    * [Resources Files](#resources-files)
