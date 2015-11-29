@@ -1,15 +1,7 @@
 # Coding Guidelines
 
-Below is a list of coding conventions that we at iCapps try to follow.
+These are the coding guidelines try to follow at iCapps.
 
-- [Android](android-guidelines.md) Conventions used for Android projects.
-- [iOS Objective-C](ios-objective-c-guidelines.md) Conventions used for iOS projects written in Objective-C.
-- [iOS Swift](ios-swift-guidelines.md) Conventions used for iOS projects written in Swift.
-- [Web](web-guidelines.md) Conventions used for web projects.
-
-## Reference
-
-We got most of our inspiration from several coding guidlines available online.
-
-- [New York Times Objective-C Style Guide](https://github.com/NYTimes/objective-c-style-guide)
-- [Ray Wenderlich Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
+- [Android](Android/) Conventions used for Android projects.
+- [iOS](iOS/) Conventions used for iOS projects.
+- [Web](Web/) Conventions used for web projects.
