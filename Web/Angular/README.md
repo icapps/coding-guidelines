@@ -12,7 +12,7 @@ The purpose of this style guide is to provide guidance on building Angular appli
 
 >If you like this guide, check out my [Angular Patterns: Clean Code](http://jpapa.me/ngclean) course at Pluralsight which is a companion to this guide.
 
-  [![Angular Patterns: Clean Code](https://raw.githubusercontent.com/johnpapa/angular-styleguide/master/assets/ng-clean-code-banner.png)](http://jpapa.me/ngclean)
+  [![Angular Patterns: Clean Code](assets/ng-clean-code-banner.png)](http://jpapa.me/ngclean)
 
 ## Community Awesomeness and Credit
 Never work in a vacuum. I find that the Angular community is an incredible group who are passionate about sharing experiences. As such, a friend and Angular expert Todd Motto and I have collaborated on many styles and conventions. We agree on most, and some we diverge. I encourage you to check out [Todd's guidelines](https://github.com/toddmotto/angularjs-styleguide) to get a sense for his approach and how it compares.
@@ -467,7 +467,7 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   }
   ```
 
-    ![Controller Using "Above the Fold"](https://raw.githubusercontent.com/johnpapa/angular-styleguide/master/assets/above-the-fold-1.png)
+    ![Controller Using "Above the Fold"](assets/above-the-fold-1.png)
 
   Note: If the function is a 1 liner consider keeping it right up top, as long as readability is not affected.
 
@@ -812,7 +812,7 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
   This way bindings are mirrored across the host object, primitive values cannot update alone using the revealing module pattern.
 
-    ![Factories Using "Above the Fold"](https://raw.githubusercontent.com/johnpapa/angular-styleguide/master/assets/above-the-fold-2.png)
+    ![Factories Using "Above the Fold"](assets/above-the-fold-2.png)
 
 ### Function Declarations to Hide Implementation Details
 ###### [Style [Y053](#style-y053)]
@@ -2225,7 +2225,7 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
             session-detail.controller.js
     ```
 
-      ![Sample App Structure](https://raw.githubusercontent.com/johnpapa/angular-styleguide/master/assets/modularity-2.png)
+      ![Sample App Structure](assets/modularity-2.png)
 
       Note: Do not structure your app using folders-by-type. This requires moving to multiple folders when working on a feature and gets unwieldy quickly as the app grows to 5, 10 or 25+ views and controllers (and other features), which makes it more difficult than folder-by-feature to locate files.
 
@@ -2319,7 +2319,7 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
   - The application root module depends on the app specific feature modules and any shared or reusable modules.
 
-    ![Modularity and Dependencies](https://raw.githubusercontent.com/johnpapa/angular-styleguide/master/assets/modularity-1.png)
+    ![Modularity and Dependencies](assets/modularity-1.png)
 
     *Why?*: The main app module contains a quickly identifiable manifest of the application's features.
 
@@ -2551,7 +2551,7 @@ Unit testing helps maintain clean code, as such I included some of my recommenda
     "mocha": true,
     ```
 
-  ![Testing Tools](https://raw.githubusercontent.com/johnpapa/angular-styleguide/master/assets/testing-tools.png)
+  ![Testing Tools](assets/testing-tools.png)
 
 ### Organizing Tests
 ###### [Style [Y197](#style-y197)]
