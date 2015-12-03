@@ -343,7 +343,7 @@
       return `${firstName} ${lastName}`;
     }
 
-    // best
+    // OK as well, but less flexible when used with a lot of properties
     function getFullName({ firstName, lastName }) {
       return `${firstName} ${lastName}`;
     }
