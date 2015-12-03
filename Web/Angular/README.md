@@ -354,7 +354,7 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 ### controllerAs with vm
 ###### [Style [Y032](#style-y032)]
 
-  - Use a capture variable for `this` when using the `controllerAs` syntax. Choose a consistent variable name such as `vm`, which stands for ViewModel.
+  - Use a capture variable for `this` when using the `controllerAs` syntax. Choose a consistent variable name such as `_self`, which is a reference to the ViewModel.
 
   *Why?*: The `this` keyword is contextual and when used within a function inside a controller may change its context. Capturing the context of `this` avoids encountering this problem.
 
@@ -369,9 +369,9 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   ```javascript
   /* recommended */
   function CustomerController() {
-      var vm = this;
-      vm.name = {};
-      vm.sendMessage = function() { };
+      var _self = this;
+      _self.name = {};
+      _self.sendMessage = function() { };
   }
   ```
 
@@ -379,23 +379,23 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
   ```javascript
   /* jshint validthis: true */
-  var vm = this;
+  var _self = this;
   ```
 
-  Note: When creating watches in a controller using `controller as`, you can watch the `vm.*` member using the following syntax. (Create watches with caution as they add more load to the digest cycle.)
+  Note: When creating watches in a controller using `controller as`, you can watch the `_self.*` member using the following syntax. (Create watches with caution as they add more load to the digest cycle.)
 
   ```html
-  <input ng-model="vm.title"/>
+  <input ng-model="_self.title"/>
   ```
 
   ```javascript
   function SomeController($scope, $log) {
-      var vm = this;
-      vm.title = 'Some Title';
+      var _self = this;
+      _self.title = 'Some Title';
 
-      $scope.$watch('vm.title', function(current, original) {
-          $log.info('vm.title was %s', original);
-          $log.info('vm.title is now %s', current);
+      $scope.$watch('_self.title', function(current, original) {
+          $log.info('_self.title was %s', original);
+          $log.info('_self.title is now %s', current);
       });
   }
   ```
@@ -404,12 +404,12 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
   ```html
   <!-- avoid -->
-  <input ng-model="customerProductItemVm.text">
+  <input ng-model="customerProductItem_self.text">
   ```
 
   ```html
   <!-- recommended -->
-  <input ng-model="productVm.id">
+  <input ng-model="product_self.id">
   ```
 
 ### Bindable Members Up Top
@@ -424,32 +424,32 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   ```javascript
   /* avoid */
   function SessionsController() {
-      var vm = this;
+      var _self = this;
 
-      vm.gotoSession = function() {
+      _self.gotoSession = function() {
         /* ... */
       };
-      vm.refresh = function() {
+      _self.refresh = function() {
         /* ... */
       };
-      vm.search = function() {
+      _self.search = function() {
         /* ... */
       };
-      vm.sessions = [];
-      vm.title = 'Sessions';
+      _self.sessions = [];
+      _self.title = 'Sessions';
   }
   ```
 
   ```javascript
   /* recommended */
   function SessionsController() {
-      var vm = this;
+      var _self = this;
 
-      vm.gotoSession = gotoSession;
-      vm.refresh = refresh;
-      vm.search = search;
-      vm.sessions = [];
-      vm.title = 'Sessions';
+      _self.gotoSession = gotoSession;
+      _self.refresh = refresh;
+      _self.search = search;
+      _self.sessions = [];
+      _self.title = 'Sessions';
 
       ////////////
 
@@ -474,10 +474,10 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   ```javascript
   /* avoid */
   function SessionsController(data) {
-      var vm = this;
+      var _self = this;
 
-      vm.gotoSession = gotoSession;
-      vm.refresh = function() {
+      _self.gotoSession = gotoSession;
+      _self.refresh = function() {
           /**
            * lines
            * of
@@ -486,22 +486,22 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
            * readability
            */
       };
-      vm.search = search;
-      vm.sessions = [];
-      vm.title = 'Sessions';
+      _self.search = search;
+      _self.sessions = [];
+      _self.title = 'Sessions';
   }
   ```
 
   ```javascript
   /* recommended */
   function SessionsController(sessionDataService) {
-      var vm = this;
+      var _self = this;
 
-      vm.gotoSession = gotoSession;
-      vm.refresh = sessionDataService.refresh; // 1 liner is OK
-      vm.search = search;
-      vm.sessions = [];
-      vm.title = 'Sessions';
+      _self.gotoSession = gotoSession;
+      _self.refresh = sessionDataService.refresh; // 1 liner is OK
+      _self.search = search;
+      _self.sessions = [];
+      _self.title = 'Sessions';
   }
   ```
 
@@ -526,9 +526,9 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
    * Using function expressions.
    */
   function AvengersController(avengersService, logger) {
-      var vm = this;
-      vm.avengers = [];
-      vm.title = 'Avengers';
+      var _self = this;
+      _self.avengers = [];
+      _self.title = 'Avengers';
 
       var activate = function() {
           return getAvengers().then(function() {
@@ -538,18 +538,18 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
       var getAvengers = function() {
           return avengersService.getAvengers().then(function(data) {
-              vm.avengers = data;
-              return vm.avengers;
+              _self.avengers = data;
+              return _self.avengers;
           });
       }
 
-      vm.getAvengers = getAvengers;
+      _self.getAvengers = getAvengers;
 
       activate();
   }
   ```
 
-  Notice that the important stuff is scattered in the preceding example. In the example below, notice that the important stuff is up top. For example, the members bound to the controller such as `vm.avengers` and `vm.title`. The implementation details are down below. This is just easier to read.
+  Notice that the important stuff is scattered in the preceding example. In the example below, notice that the important stuff is up top. For example, the members bound to the controller such as `_self.avengers` and `_self.title`. The implementation details are down below. This is just easier to read.
 
   ```javascript
   /*
@@ -558,10 +558,10 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
    * and bindable members up top.
    */
   function AvengersController(avengersService, logger) {
-      var vm = this;
-      vm.avengers = [];
-      vm.getAvengers = getAvengers;
-      vm.title = 'Avengers';
+      var _self = this;
+      _self.avengers = [];
+      _self.getAvengers = getAvengers;
+      _self.title = 'Avengers';
 
       activate();
 
@@ -573,8 +573,8 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
       function getAvengers() {
           return avengersService.getAvengers().then(function(data) {
-              vm.avengers = data;
-              return vm.avengers;
+              _self.avengers = data;
+              return _self.avengers;
           });
       }
   }
@@ -597,10 +597,10 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
   /* avoid */
   function OrderController($http, $q, config, userInfo) {
-      var vm = this;
-      vm.checkCredit = checkCredit;
-      vm.isCreditOk;
-      vm.total = 0;
+      var _self = this;
+      _self.checkCredit = checkCredit;
+      _self.isCreditOk;
+      _self.total = 0;
 
       function checkCredit() {
           var settings = {};
@@ -613,7 +613,7 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
               .then(function(data) {
                // Unpack JSON data in the response object
                  // to find maxRemainingAmount
-                 vm.isCreditOk = vm.total <= maxRemainingAmount
+                 _self.isCreditOk = _self.total <= maxRemainingAmount
               })
               .catch(function(error) {
                  // Interpret error
@@ -627,14 +627,14 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   ```javascript
   /* recommended */
   function OrderController(creditService) {
-      var vm = this;
-      vm.checkCredit = checkCredit;
-      vm.isCreditOk;
-      vm.total = 0;
+      var _self = this;
+      _self.checkCredit = checkCredit;
+      _self.isCreditOk;
+      _self.total = 0;
 
       function checkCredit() {
-         return creditService.isOrderTotalOk(vm.total)
-            .then(function(isOk) { vm.isCreditOk = isOk; })
+         return creditService.isOrderTotalOk(_self.total)
+            .then(function(isOk) { _self.isCreditOk = isOk; })
             .catch(showError);
       };
   }
@@ -971,8 +971,8 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   AvengersController.$inject = ['dataservice', 'logger'];
 
   function AvengersController(dataservice, logger) {
-      var vm = this;
-      vm.avengers = [];
+      var _self = this;
+      _self.avengers = [];
 
       activate();
 
@@ -985,8 +985,8 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
       function getAvengers() {
           return dataservice.getAvengers()
               .then(function(data) {
-                  vm.avengers = data;
-                  return vm.avengers;
+                  _self.avengers = data;
+                  return _self.avengers;
               });
       }
   }
@@ -1031,8 +1031,8 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
                  * Step 3
                  * set the data and resolve the promise
                  */
-                vm.avengers = data;
-                return vm.avengers;
+                _self.avengers = data;
+                return _self.avengers;
         });
   }
   ```
@@ -1253,8 +1253,8 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
       function linkFunc(scope, el, attr, ctrl) {
           console.log('LINK: scope.min = %s *** should be undefined', scope.min);
           console.log('LINK: scope.max = %s *** should be undefined', scope.max);
-          console.log('LINK: scope.vm.min = %s', scope.vm.min);
-          console.log('LINK: scope.vm.max = %s', scope.vm.max);
+          console.log('LINK: scope._self.min = %s', scope._self.min);
+          console.log('LINK: scope._self.max = %s', scope._self.max);
       }
   }
 
@@ -1262,22 +1262,22 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
   function ExampleController($scope) {
       // Injecting $scope just for comparison
-      var vm = this;
+      var _self = this;
 
-      vm.min = 3;
+      _self.min = 3;
 
-      console.log('CTRL: $scope.vm.min = %s', $scope.vm.min);
-      console.log('CTRL: $scope.vm.max = %s', $scope.vm.max);
-      console.log('CTRL: vm.min = %s', vm.min);
-      console.log('CTRL: vm.max = %s', vm.max);
+      console.log('CTRL: $scope._self.min = %s', $scope._self.min);
+      console.log('CTRL: $scope._self.max = %s', $scope._self.max);
+      console.log('CTRL: _self.min = %s', _self.min);
+      console.log('CTRL: _self.max = %s', _self.max);
   }
   ```
 
   ```html
   <!-- example.directive.html -->
   <div>hello world</div>
-  <div>max={{vm.max}}<input ng-model="vm.max"/></div>
-  <div>min={{vm.min}}<input ng-model="vm.min"/></div>
+  <div>max={{_self.max}}<input ng-model="_self.max"/></div>
+  <div>min={{_self.min}}<input ng-model="_self.min"/></div>
   ```
 
     Note: You can also name the controller when you inject it into the link function and access directive attributes as properties of the controller.
@@ -1287,8 +1287,8 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   function linkFunc(scope, el, attr, vm) {
       console.log('LINK: scope.min = %s *** should be undefined', scope.min);
       console.log('LINK: scope.max = %s *** should be undefined', scope.max);
-      console.log('LINK: vm.min = %s', vm.min);
-      console.log('LINK: vm.max = %s', vm.max);
+      console.log('LINK: _self.min = %s', _self.min);
+      console.log('LINK: _self.max = %s', _self.max);
   }
   ```
 
@@ -1325,18 +1325,18 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   }
 
   function ExampleController() {
-      var vm = this;
-      vm.min = 3;
-      console.log('CTRL: vm.min = %s', vm.min);
-      console.log('CTRL: vm.max = %s', vm.max);
+      var _self = this;
+      _self.min = 3;
+      console.log('CTRL: _self.min = %s', _self.min);
+      console.log('CTRL: _self.max = %s', _self.max);
   }
   ```
 
   ```html
   <!-- example.directive.html -->
   <div>hello world</div>
-  <div>max={{vm.max}}<input ng-model="vm.max"/></div>
-  <div>min={{vm.min}}<input ng-model="vm.min"/></div>
+  <div>max={{_self.max}}<input ng-model="_self.max"/></div>
+  <div>min={{_self.min}}<input ng-model="_self.min"/></div>
   ```
 
 **[Back to top](#table-of-contents)**
@@ -1356,13 +1356,13 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   ```javascript
   /* avoid */
   function AvengersController(dataservice) {
-      var vm = this;
-      vm.avengers = [];
-      vm.title = 'Avengers';
+      var _self = this;
+      _self.avengers = [];
+      _self.title = 'Avengers';
 
       dataservice.getAvengers().then(function(data) {
-          vm.avengers = data;
-          return vm.avengers;
+          _self.avengers = data;
+          return _self.avengers;
       });
   }
   ```
@@ -1370,9 +1370,9 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
   ```javascript
   /* recommended */
   function AvengersController(dataservice) {
-      var vm = this;
-      vm.avengers = [];
-      vm.title = 'Avengers';
+      var _self = this;
+      _self.avengers = [];
+      _self.title = 'Avengers';
 
       activate();
 
@@ -1380,8 +1380,8 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
       function activate() {
           return dataservice.getAvengers().then(function(data) {
-              vm.avengers = data;
-              return vm.avengers;
+              _self.avengers = data;
+              return _self.avengers;
           });
       }
   }
@@ -1407,12 +1407,12 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
       .controller('AvengersController', AvengersController);
 
   function AvengersController(movieService) {
-      var vm = this;
+      var _self = this;
       // unresolved
-      vm.movies;
+      _self.movies;
       // resolved asynchronously
       movieService.getMovies().then(function(response) {
-          vm.movies = response.movies;
+          _self.movies = response.movies;
       });
   }
   ```
@@ -1446,8 +1446,8 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
   AvengersController.$inject = ['moviesPrepService'];
   function AvengersController(moviesPrepService) {
-      var vm = this;
-      vm.movies = moviesPrepService.movies;
+      var _self = this;
+      _self.movies = moviesPrepService.movies;
   }
   ```
 
@@ -1484,8 +1484,8 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
   AvengersController.$inject = ['moviesPrepService'];
   function AvengersController(moviesPrepService) {
-        var vm = this;
-        vm.movies = moviesPrepService.movies;
+        var _self = this;
+        _self.movies = moviesPrepService.movies;
   }
   ```
     Note: The code example's dependency on `movieService` is not minification safe on its own. For details on how to make this code minification safe, see the sections on [dependency injection](#manual-annotating-for-dependency-injection) and on [minification and annotation](#minification-and-annotation).
@@ -1649,12 +1649,12 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
     /* @ngInject */
     function AvengersController(storage, avengerService) {
-        var vm = this;
-        vm.heroSearch = '';
-        vm.storeHero = storeHero;
+        var _self = this;
+        _self.heroSearch = '';
+        _self.storeHero = storeHero;
 
         function storeHero() {
-            var hero = avengerService.find(vm.heroSearch);
+            var hero = avengerService.find(_self.heroSearch);
             storage.save(hero.name, hero);
         }
     }
@@ -1669,12 +1669,12 @@ While this guide explains the *what*, *why* and *how*, I find it helpful to see 
 
     /* @ngInject */
     function AvengersController(storage, avengerService) {
-        var vm = this;
-        vm.heroSearch = '';
-        vm.storeHero = storeHero;
+        var _self = this;
+        _self.heroSearch = '';
+        _self.storeHero = storeHero;
 
         function storeHero() {
-            var hero = avengerService.find(vm.heroSearch);
+            var hero = avengerService.find(_self.heroSearch);
             storage.save(hero.name, hero);
         }
     }
