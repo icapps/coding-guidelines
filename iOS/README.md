@@ -1,7 +1,7 @@
 # iOS Coding Guidelines
 
-- [iOS Objective-C](ios-objective-c-guidelines.md) Conventions used for iOS projects written in Objective-C.
-- [iOS Swift](ios-swift-guidelines.md) Conventions used for iOS projects written in Swift.
+- [iOS Objective-C](Objective-C/) Conventions used for iOS projects written in Objective-C.
+- [iOS Swift](Swift/) Conventions used for iOS projects written in Swift.
 
 ## Reference
 
