@@ -29,7 +29,7 @@ This style guide outlines the coding conventions of the Android teams at iCapps.
  * [Order Import Statements](#order-import-statements)
  * [Class Member Ordering](#class-member-ordering)
  * [Parameter Ordering In Methods](#parameter-ordering-in-methods)
- * [Use Spaces for Indentation](#use-spaces-for-indentation)
+ * [Use Tabs for Indentation](#use-tabs-for-indentation)
  * [Follow Field Naming Conventions](#follow-field-naming-conventions)
  * [Use Standard Brace Style](#use-standard-brace-style)
  * [Line-Wrapping Strategies](#line-wrapping-strategies)
@@ -434,11 +434,11 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 ```
 
 
-## Use Spaces for Indentation
+## Use Tabs for Indentation
 
-We use 4 space indents for blocks. We never use tabs. When in doubt, be consistent with code around you.
+We use 1 tab indents for blocks. We never use tabs. When in doubt, be consistent with code around you.
 
-We use 8 space indents for line wraps, including function calls and assignments. For example, this is correct:
+We use 2 tabs indents for line wraps, including function calls and assignments. For example, this is correct:
 ```
 Instrument i =
         someLongExpression(that, wouldNotFit, on, one, line);
