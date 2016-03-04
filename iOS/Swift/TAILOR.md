@@ -10,6 +10,8 @@ You can easily install Tailor with Homebrew.
 
 When working on other OS's you can find more information [here](https://github.com/sleekbyte/tailor/wiki).
 
+When using `tailor` make sure your system is running Java 8 and `JAVA_HOME` points to the correct location.
+
 ## Analyse your code
 
 You can run Tailor from the command line like this:
