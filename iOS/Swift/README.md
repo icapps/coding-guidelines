@@ -155,20 +155,12 @@ When they are needed, use comments to explain **why** a particular piece of code
 Avoid block comments inline with code, as the code should be as self-documenting as possible. When you put a comment inside a function this is an indication you could make it a function. Like so:
 
 ```swift
-  func isFooFunny (foo : Foo) throws -> Bool? {
+  func isFooFunny(foo: Foo) throws -> Bool? {
       if foo.gender == 0 { //This is a girl
-        if foo.joke.hasSuffix("HaHa") {
-          return true
-        }else {
-          return false
-        }
-      }else if foo.gender == 1 { //This is a boy
-        if foo.joke.hasPrefix() {
-          return true
-        }else {
-          return false
-        }
-      }else { //We do not support androgine cases yet
+        return foo.joke.hasSuffix("HaHa")
+      } else if foo.gender == 1 { //This is a boy
+        return foo.joke.hasPrefix("...Ha...Bla ... Ha")
+      } else { //We do not support androgine cases yet
         throw Error.NoAndroginesYet
         return nil
       }
