@@ -184,7 +184,8 @@ Rewrite with meaningful functions and comments:
 ```
 
 ### Documentation comments
-Comments used for documentation functions can are 'marked' with `/** */` or `///`. We never use `/** */` but  `///` on every line like in `isFooFunny(foo:)` example above.
+
+Comments used for documentation functions can be 'marked' with `/** */` or `///`. We never use `/** */` but  `///` on every line like the `isFooFunny(foo:)` example above.
 
 ## Classes and Structures
 
