@@ -152,8 +152,40 @@ else {
 
 When they are needed, use comments to explain **why** a particular piece of code does something. Comments must be kept up-to-date or deleted.
 
-Avoid block comments inline with code, as the code should be as self-documenting as possible. *Exception: This does not apply to those comments used to generate documentation.*
+Avoid block comments inline with code, as the code should be as self-documenting as possible. When you put a comment inside a function this is an indication you could make it a function. Like so:
 
+```swift
+  func isFooFunny(foo: Foo) throws -> Bool? {
+      if foo.gender == 0 { //This is a girl
+        return foo.joke.hasSuffix("HaHa")
+      } else if foo.gender == 1 { //This is a boy
+        return foo.joke.hasPrefix("...Ha...Bla ... Ha")
+      } else { //We do not support androgine cases yet
+        throw Error.NoAndroginesYet
+        return nil
+      }
+  }
+```
+Rewrite with meaningful functions and comments:
+
+```swift
+  /// The purpose of this function is to know of Foo can tell a funny joke in an objective way.
+  /// - returns : `nil` is returned if the joke is from an androgine person. We have no algorithm for that yet!
+  func isFooFunny(foo: Foo) throws -> Bool? {
+    guard !foo.isAndrogine else {
+      return nil
+    }
+
+    let girlSuffix = "HaHa"
+    let boySuffix = "...Ha...Bla ... Ha"
+
+    return foo.isBoy ? foo.joke.hasSuffix(boySuffix) : foo.joke.hasSuffix(girlSuffix)
+  }
+```
+
+### Documentation comments
+
+Comments used for documentation functions can be 'marked' with `/** */` or `///`. We never use `/** */` but  `///` on every line like the `isFooFunny(foo:)` example above.
 
 ## Classes and Structures
 
