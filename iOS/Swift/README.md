@@ -171,7 +171,7 @@ Rewrite with meaningfull functions and comments:
 ```swift
   /// The purpose of this function is to know of Foo can tell a funny joke in an objective way.
   /// - returns : `nil` is returned if the joke is from an androgine person. We have no algorithm for that yet!
-  func isFooFunny (foo : Foo) throws -> Bool? {
+  func isFooFunny(foo: Foo) throws -> Bool? {
     guard !foo.isAndrogine else {
       return nil
     }
