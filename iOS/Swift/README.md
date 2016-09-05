@@ -166,7 +166,7 @@ Avoid block comments inline with code, as the code should be as self-documenting
       }
   }
 ```
-Rewrite with meaningfull functions and comments:
+Rewrite with meaningful functions and comments:
 
 ```swift
   /// The purpose of this function is to know of Foo can tell a funny joke in an objective way.
