@@ -1,0 +1,35 @@
+/********************
+Default settings
+********************/
+
+$font-size-default:               14px !default;
+$font-size-small:                 13px !default;
+$font-size-large:                 16px !default;
+
+$font-family-default:             "Helvetica" !default;
+$font-family-alternative:         "Arial" !default;
+
+$padding:                         15px !default;
+
+$border-default:                  1px solid $brand !default;
+
+$text-color-default:              $black !default;
+
+/********************
+Module settings
+********************/
+
+// m-button
+$button-font-size:                $font-size-default !default;
+$button-font-weight:              700 !default;
+$button-background-color:         $brand !default;
+$button-color:                    $text-color-default !default;
+
+$button-error-background-color:   $error !default;
+$button-error-color:              $white !default;
+
+$button-success-background-color: $success !default;
+$button-success-color:            $white !default;
+
+// m-navbar
+$navbar-list-border:              $border-default !default;

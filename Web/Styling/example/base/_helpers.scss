@@ -1,0 +1,19 @@
+.h-text-left {
+    text-align: left !important;
+}
+
+.h-text-right {
+    text-align: right !important;
+}
+
+.h-text-center {
+    text-align: center !important;
+}
+
+.h-hide {
+    display: none !important;
+}
+
+.h-clearfix {
+    @include clearfix;
+}

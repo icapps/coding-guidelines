@@ -1,0 +1,20 @@
+.m-button {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
+  background: $button-background-color;
+  color: $button-color;
+
+  &.m-button--error {
+    background: $button-error-background-color;
+    color: $button-error-color;
+  }
+
+  &.m-button--success {
+    background: $button-success-background-color;
+    color: $button-success-color;
+  }
+
+}
+
