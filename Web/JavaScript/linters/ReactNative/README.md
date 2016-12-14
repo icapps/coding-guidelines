@@ -9,5 +9,5 @@ npm install --save-dev \
   eslint-plugin-flowtype \
   eslint-plugin-import" \
   eslint-plugin-jsx-a11y \
-  eslint-plugin-react"
+  eslint-plugin-react
 ```
