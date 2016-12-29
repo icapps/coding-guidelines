@@ -9,7 +9,6 @@ As an example you can use a `.swiftlint.yml` file to customize the rules you wan
 ```yml
 excluded:
   - ./Pods
-  - ./<Project>Tests
 
 disabled_rules:
   - variable_name

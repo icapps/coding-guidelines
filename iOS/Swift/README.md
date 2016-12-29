@@ -23,6 +23,7 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
 	* [Type Inference](#type-inference)
 	* [Syntactic Sugar](#syntactic-sugar)
 * [Control Flow](#control-flow)
+	* [switch over if](#Prefer `switch` over `if`)
 * [Semicolons](#semicolons)
 * [Language](#language)
 * [Credits](#credits)
@@ -72,7 +73,10 @@ date(from: dateString)
 convertPoint(at: column, in: row)
 timedAction(after: time, perform: someOtherAction)
 ```
-The code above could mentions how to avoid spreading Ints, Strings, … around. Prefer parameters as variables.
+In code you use a lot of `10.0` or `"string"`. This is handy to get things going. 
+But after a while this becomes dangerous. Also the naming conventions of `Swift 3.0` prefer
+shorter but descriptive naming. If you use variable name over `primitive types` the code
+becomes more descriptive. As examplified above.
 
 For methods, follow the standard Apple convention of referring to the first parameter in the method name:
 
@@ -98,7 +102,7 @@ enum Shape {
 ### Prose
 When referring to functions in prose (tutorials, books, comments) include the required parameter names from the caller's perspective or `_` for unnamed parameters.
 
-> Call `convertPoint(at:in:)` from your own `init` implementation.If you call `date(from:)` make sure that you provide a string with the format "yyyy-MM-dd".If you call `timedAction(after:perform:)` from `viewDidLoad()` remember to provide an adjusted delay value and an action to perform.You shouldn't call the data source method `tableView(_:cellForRowAtIndexPath:)` directly.  
+> Call `convertPoint(at:in:)` from your own `init` implementation.If you call `date(from:)` make sure that you provide a string with the format "yyyy-MM-dd".If you call `timedAction(after:perform:)` from `viewDidLoad()` remember to provide an adjusted delay value and an action to perform.You shouldn't call the data source method `tableView(_:cellForRowAtIndexPath:)` directly.
 When in doubt, look at how Xcode lists the method in the jump bar – our style here matches that.
 
 ![Methods in Xcode jump bar](Screenshots/xcode-jump-bar.png)
