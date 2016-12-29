@@ -363,34 +363,29 @@ attendeeList.sort { a, b in
 }
 ```
 
-
 ## Types
-
 Always use Swift's native types when available. Swift offers bridging to Objective-C so you can still use the full set of methods as needed.
 
 **Preferred:**
 ```swift
 let width = 120.0                                    // Double
-let widthString = (width as NSNumber).stringValue    // String
+let widthString = "\(width)"    // String
 ```
 
 **Not Preferred:**
 ```swift
-let width: NSNumber = 120.0                          // NSNumber
-let widthString: NSString = width.stringValue        // NSString
+let width: Number = 120.0                          // Number
+let widthString: String = width.stringValue        // String
 ```
 
 In Sprite Kit code, use `CGFloat` if it makes the code more succinct by avoiding too many conversions.
 
 ### Constants
-
 Constants are defined using the `let` keyword, and variables with the `var` keyword. Always use `let` instead of `var` if the value of the variable will not change.
 
 **Tip:** A good technique is to define everything using `let` and only change it to `var` if the compiler complains!
 
-
 ### Optionals
-
 Declare variables and function return types as optional with `?` where a nil value is acceptable.
 
 Use implicitly unwrapped types declared with `!` only for instance variables that you know will be initialized later before use, such as subviews that will be set up in `viewDidLoad`.
