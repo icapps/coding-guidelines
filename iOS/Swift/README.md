@@ -25,6 +25,7 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
 * [Control Flow](#control-flow)
 	* [switch over if](#Prefer `switch` over `if`)
 * [Semicolons](#semicolons)
+* [MARK](#mark)
 * [Language](#language)
 * [Credits](#credits)
 
@@ -73,7 +74,7 @@ date(from: dateString)
 convertPoint(at: column, in: row)
 timedAction(after: time, perform: someOtherAction)
 ```
-In code you use a lot of `10.0` or `"string"`. This is handy to get things going. 
+In code you use a lot of `10.0` or `"string"`. This is handy to get things going.
 But after a while this becomes dangerous. Also the naming conventions of `Swift 3.0` prefer
 shorter but descriptive naming. If you use variable name over `primitive types` the code
 becomes more descriptive. As examplified above.
@@ -571,6 +572,27 @@ let swift = "not a scripting language";
 
 **NOTE**: Swift is very different to JavaScript, where omitting semicolons is [generally considered unsafe](http://stackoverflow.com/questions/444080/do-you-recommend-using-semicolons-after-every-statement-in-javascript)
 
+## MARK
+
+Swift has no header file. So to keep code in to small chunks use 2 things:
+* Use `// MARK: - <Header>` to separate code
+* Write code that goes together in extensions, (you can collapse them easily then)
+
+```swift
+// MARK: - <Header>
+extension Object { // ! no space between Mark and extension!
+
+	func someFunction() {
+		// Do stuff
+	}
+
+	func secondFunctionForHeader() {
+
+	}
+
+}
+
+````
 ## Language
 Use US English spelling to match Apple's API.
 
