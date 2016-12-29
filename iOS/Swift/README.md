@@ -1,5 +1,4 @@
 # iCapps Swift Style Guide.
-
 This style guide outlines the coding conventions of the iOS teams at iCapps. For the base of our swift guide, we've used the one of raywenderlich because we feel it's the most complete and updated it to our needs.
 
 Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/icapps/coding-guidelines/tree/master/iOS/Objective-C) too.
@@ -7,30 +6,28 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
 ## Table of Contents
 
 * [Naming](#naming)
-  * [Prose](#prose)
-  * [Class Prefixes](#class-prefixes)
+	* [Prose](#prose)
+	* [Class Prefixes](#class-prefixes)
 * [Spacing](#spacing)
 * [Comments](#comments)
 * [Classes and Structures](#classes-and-structures)
-  * [Use of Self](#use-of-self)
-  * [Protocol Conformance](#protocol-conformance)
-  * [Computed Properties](#computed-properties)
+	* [Use of Self](#use-of-self)
+	* [Protocol Conformance](#protocol-conformance)
+	* [Computed Properties](#computed-properties)
 * [Function Declarations](#function-declarations)
 * [Closure Expressions](#closure-expressions)
 * [Types](#types)
-  * [Constants](#constants)
-  * [Optionals](#optionals)
-  * [Struct Initializers](#struct-initializers)
-  * [Type Inference](#type-inference)
-  * [Syntactic Sugar](#syntactic-sugar)
+	* [Constants](#constants)
+	* [Optionals](#optionals)
+	* [Struct Initializers](#struct-initializers)
+	* [Type Inference](#type-inference)
+	* [Syntactic Sugar](#syntactic-sugar)
 * [Control Flow](#control-flow)
 * [Semicolons](#semicolons)
 * [Language](#language)
 * [Credits](#credits)
 
-
 ## Naming
-
 Use descriptive names with camel case for classes, methods, variables, etc. Class names should be capitalized, while method names and variables should start with a lower case letter.
 
 **Preferred:**
@@ -55,59 +52,58 @@ class app_widgetContainer {
 }
 ```
 
-For functions and init methods, prefer named parameters for all arguments unless the context is very clear. Include external parameter names if it makes function calls more readable.
+For functions and init methods, prefer *named parameters* for all arguments unless the context is very clear. Include external parameter names if it makes function calls more readable.
 
 ```swift
-func dateFromString(dateString: String) -> NSDate
-func convertPointAt(column column: Int, row: Int) -> CGPoint
-func timedAction(afterDelay delay: NSTimeInterval, perform action: SKAction) -> SKAction!
+func date(from string: String) -> Date
+func convertPoint(at column: Int, in row: Int) -> CGPoint
+func timedAction(after delay: NSTimeInterval, perform action: SKAction) -> SKAction!
 
 // would be called like this:
-dateFromString("2014-03-14")
-convertPointAt(column: 42, row: 13)
-timedAction(afterDelay: 1.0, perform: someOtherAction)
+date(from: "2014-03-14")
+convertPoint(at: 42, in: 13)
+timedAction(after: 1.0, perform: someOtherAction)
+// Improvement on this would be to also name the variables
+let dateString = "2014-03-14"
+let column = 42
+let row = 13
+let time = 1.0
+date(from: dateString)
+convertPoint(at: column, in: row)
+timedAction(after: time, perform: someOtherAction)
 ```
+The code above could mentions how to avoid spreading Ints, Strings, … around. Prefer parameters as variables.
 
 For methods, follow the standard Apple convention of referring to the first parameter in the method name:
 
 ```swift
 class Counter {
-    func combineWith(otherCounter: Counter, options: Dictionary?) { ... }
-    func incrementBy(amount: Int) { ... }
+    func combine(with counter: Counter, options: Dictionary?) { ... }
+    func increment(by amount: Int) { ... }
 }
 ```
 
 ### Enumerations
-
-Use UpperCamelCase for enumeration values:
+Use LowerCamelCase for enumeration values:
 
 ```swift
 enum Shape {
-    case Rectangle
-    case Square
-    case Triangle
-    case Circle
+    case rectangle
+    case square
+    case triangle
+    case circle
 }
 ```
 
 ### Prose
-
 When referring to functions in prose (tutorials, books, comments) include the required parameter names from the caller's perspective or `_` for unnamed parameters.
 
-> Call `convertPointAt(column:row:)` from your own `init` implementation.
->
-> If you call `dateFromString(_:)` make sure that you provide a string with the format "yyyy-MM-dd".
->
-> If you call `timedAction(afterDelay:perform:)` from `viewDidLoad()` remember to provide an adjusted delay value and an action to perform.
->
-> You shouldn't call the data source method `tableView(_:cellForRowAtIndexPath:)` directly.
-
+> Call `convertPoint(at:in:)` from your own `init` implementation.If you call `date(from:)` make sure that you provide a string with the format "yyyy-MM-dd".If you call `timedAction(after:perform:)` from `viewDidLoad()` remember to provide an adjusted delay value and an action to perform.You shouldn't call the data source method `tableView(_:cellForRowAtIndexPath:)` directly.  
 When in doubt, look at how Xcode lists the method in the jump bar – our style here matches that.
 
 ![Methods in Xcode jump bar](Screenshots/xcode-jump-bar.png)
 
 ### Class Prefixes
-
 Swift types are automatically namespaced by the module that contains them and you should not add a class prefix. If two names from different modules collide you can disambiguate by prefixing the type name with the module name.
 
 ```swift
@@ -116,10 +112,9 @@ import SomeModule
 let myClass = MyModule.UsefulClass()
 ```
 
-
 ## Spacing
 
-* Indent using tabs, it really looks better. Be sure to set this preference in Xcode as shown below:
+* Indent using _tabs_, it really looks better. Be sure to set this preference in Xcode as shown below:
 
   ![Xcode indent settings](Screenshots/indentation.png)
 
@@ -146,10 +141,9 @@ else {
 }
 ```
 
-* There should be exactly one blank line between methods to aid in visual clarity and organization. Whitespace within methods should separate functionality, but having too many sections in a method often means you should refactor into several methods.
+* There should be exactly one blank line between methods to aid in visual clarity and organisation. Whitespace within methods should separate functionality, but having too many sections in a method often means you should refactor into several methods.
 
 ## Comments
-
 When they are needed, use comments to explain **why** a particular piece of code does something. Comments must be kept up-to-date or deleted.
 
 Avoid block comments inline with code, as the code should be as self-documenting as possible. When you put a comment inside a function this is an indication you could make it a function. Like so:
@@ -171,7 +165,7 @@ Rewrite with meaningful functions and comments:
 ```swift
   /// The purpose of this function is to know of Foo can tell a funny joke in an objective way.
   /// - returns : `nil` is returned if the joke is from an androgine person. We have no algorithm for that yet!
-  func isFooFunny(foo: Foo) throws -> Bool? {
+  func isFunny(_ foo: Foo) throws -> Bool? {
     guard !foo.isAndrogine else {
       return nil
     }
@@ -184,21 +178,18 @@ Rewrite with meaningful functions and comments:
 ```
 
 ### Documentation comments
-
 Comments used for documentation functions can be 'marked' with `/** */` or `///`. We never use `/** */` but  `///` on every line like the `isFooFunny(foo:)` example above.
 
 ## Classes and Structures
 
 ### Which one to use?
-
 Remember, structs have [value semantics](https://developer.apple.com/library/mac/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-XID_144). Use structs for things that do not have an identity. An array that contains [a, b, c] is really the same as another array that contains [a, b, c] and they are completely interchangeable. It doesn't matter whether you use the first array or the second, because they represent the exact same thing. That's why arrays are structs.
 
 Classes have [reference semantics](https://developer.apple.com/library/mac/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-XID_145). Use classes for things that do have an identity or a specific life cycle. You would model a person as a class because two person objects are two different things. Just because two people have the same name and birthdate, doesn't mean they are the same person. But the person's birthdate would be a struct because a date of 3 March 1950 is the same as any other date object for 3 March 1950. The date itself doesn't have an identity.
 
-Sometimes, things should be structs but need to conform to `AnyObject` or are historically modeled as classes already (`NSDate`, `NSSet`). Try to follow these guidelines as closely as possible.
+Sometimes, things should be structs but need to conform to `AnyObject` or are historically modeled as classes already (`Date`, `Set`). Try to follow these guidelines as closely as possible.
 
 ### Example definition
-
 Here's an example of a well-styled class definition:
 
 ```swift
@@ -240,14 +231,12 @@ class Circle: Shape {
 
 The example above demonstrates the following style guidelines:
 
- + Specify types for properties, variables, constants, argument declarations and other statements with a space after the colon but not before, e.g. `x: Int`, and `Circle: Shape`.
- + Define multiple variables and structures on a single line if they share a common purpose / context.
- + Indent getter and setter definitions and property observers.
- + Don't add modifiers such as `internal` when they're already the default. Similarly, don't repeat the access modifier when overriding a method.
-
+* Specify types for properties, variables, constants, argument declarations and other statements with a space after the colon but not before, e.g. `x: Int`, and `Circle: Shape`.
+* Define multiple variables and structures on a single line if they share a common purpose / context.
+* Indent getter and setter definitions and property observers.
+* Don't add modifiers such as `internal` when they're already the default. Similarly, don't repeat the access modifier when overriding a method.
 
 ### Use of Self
-
 For conciseness, avoid using `self` since Swift does not require it to access an object's properties or invoke its methods.
 
 Use `self` when required to differentiate between property names and arguments in initializers, and when referencing properties in closure expressions (as required by the compiler):
@@ -268,7 +257,6 @@ class BoardLocation {
 ```
 
 ### Protocol Conformance
-
 When adding protocol conformance to a class, prefer adding a separate class extension for the protocol methods. This keeps the related methods grouped together with the protocol and can simplify instructions to add a protocol to a class with its associated methods.
 
 Also, don't forget the `// MARK: -` comment to keep things well-organized!
@@ -298,7 +286,6 @@ class MyViewcontroller: UIViewController, UITableViewDataSource, UIScrollViewDel
 ```
 
 ### Computed Properties
-
 For conciseness, if a computed property is read-only, omit the get clause. The get clause is required only when a set clause is provided.
 
 **Preferred:**
@@ -318,11 +305,10 @@ var diameter: Double {
 ```
 
 ## Function Declarations
-
 Keep short function declarations on one line including the opening brace:
 
 ```swift
-func reticulateSplines(spline: [Double]) -> Bool {
+func reticulate(_ splines: [Double]) -> Bool {
     // reticulate code goes here
 }
 ```
@@ -330,15 +316,13 @@ func reticulateSplines(spline: [Double]) -> Bool {
 For functions with long signatures, add line breaks at appropriate points and add an extra indent on subsequent lines:
 
 ```swift
-func reticulateSplines(spline: [Double], adjustmentFactor: Double,
+func reticulate(_ splines: [Double], adjustmentFactor: Double,
     translateConstant: Int, comment: String) -> Bool {
     // reticulate code goes here
 }
 ```
 
-
 ## Closure Expressions
-
 Use trailing closure syntax only if there's a single closure expression parameter at the end of the argument list. Give the closure parameters descriptive names.
 
 **Preferred:**
@@ -453,7 +437,6 @@ if let unwrappedSubview = optionalSubview {
 ```
 
 ### Struct Initializers
-
 Use the native Swift struct initializers rather than the legacy CGGeometry constructors.
 
 **Preferred:**
@@ -471,7 +454,6 @@ let centerPoint = CGPointMake(96, 42)
 Prefer the struct-scope constants `CGRect.infinite`, `CGRect.null`, etc. over global constants `CGRectInfinite`, `CGRectNull`, etc. For existing variables, you can use the shorter `.zero`.
 
 ### Type Inference
-
 Prefer compact code and let the compiler infer the type for a constant or variable, unless you need a specific type other than the default such as `CGFloat` or `Int16`.
 
 **Preferred:**
@@ -491,9 +473,7 @@ var names: [String] = []
 
 **NOTE**: Following this guideline means picking descriptive names is even more important than before.
 
-
 ### Syntactic Sugar
-
 Prefer the shortcut versions of type declarations over the full generics syntax.
 
 **Preferred:**
