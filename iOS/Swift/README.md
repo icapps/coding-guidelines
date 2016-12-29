@@ -518,10 +518,37 @@ for var i = 0; i < attendeeList.count; i++ {
     println("\(person) is at position #\(i)")
 }
 ```
+### Prefer `switch` over `if`
+```swift
+enum Case: Int {
+	case one, two
+}
 
+// MARK: - NOT Preferred
+let variable = Case.one
+if variable == Case.one {
+ // do something for one
+} else if varialbe == two {
+	// do something for two
+} else {
+	// something default
+}
+
+// MARK: - Pefered
+
+switch variable {
+case .one:
+ // do something for one
+case .two:
+ // do something for two
+default:
+ // something default
+}
+```
+#### Avoid Defaults in switch
+Use the compiler to fix your mistakes. If possible avoid default cases in switches.
 
 ## Semicolons
-
 Swift does not require a semicolon after each statement in your code. They are only required if you wish to combine multiple statements on a single line.
 
 Do not write multiple statements on a single line separated with semicolons.
