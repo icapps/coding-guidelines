@@ -485,9 +485,15 @@ var employees: Dictionary<Int, String>
 var faxNumber: Optional<Int>
 ```
 
+## Array or Set
+In general Array’s are more used over Sets. However sets have some nice features:
+* If the hasValue differs, the elements are unique
+* [Set operations](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID484) are very powerful , you can do `a - b = c` with sets.
+* You can always go back to an Array if order is important
+
+So as a rule prefer `Sets` when order is not important.
 
 ## Control Flow
-
 Prefer the `for-in` style of `for` loop over the `for-condition-increment` style.
 
 **Preferred:**
