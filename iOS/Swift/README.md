@@ -26,6 +26,7 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
 	* [switch over if](#Prefer `switch` over `if`)
 * [Semicolons](#semicolons)
 * [MARK](#mark)
+* [To Throw or Not](#To Throw or Not)
 * [Language](#language)
 * [Credits](#credits)
 
@@ -596,6 +597,9 @@ extension Object { // ! no space between Mark and extension!
 }
 
 ````
+
+## To Throw or Not
+
 ## Language
 Use US English spelling to match Apple's API.
 
