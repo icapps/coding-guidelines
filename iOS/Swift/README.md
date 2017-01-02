@@ -26,6 +26,7 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
 	* [switch over if](#Prefer `switch` over `if`)
 * [Semicolons](#semicolons)
 * [MARK](#mark)
+* [To Throw or Not](#To Throw or Not)
 * [Language](#language)
 * [Credits](#credits)
 
@@ -577,9 +578,9 @@ let swift = "not a scripting language";
 Swift has no header file. So to keep code in to small chunks use 2 things:
 * Use `// MARK: - <Header>` to separate code
 * Write code that goes together in extensions, (you can collapse them easily then)
-
 ```swift
 // MARK: - <Header>
+
 extension Object { // ! no space between Mark and extension!
 
 	func someFunction() {
@@ -593,6 +594,9 @@ extension Object { // ! no space between Mark and extension!
 }
 
 ````
+
+## To Throw or Not
+
 ## Language
 Use US English spelling to match Apple's API.
 
