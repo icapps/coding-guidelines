@@ -578,7 +578,10 @@ let swift = "not a scripting language";
 Swift has no header file. So to keep code in to small chunks use 2 things:
 * Use `// MARK: - <Header>` to separate code
 * Write code that goes together in extensions, (you can collapse them easily then)
+* Add empty line above and below __MARK__
+
 ```swift
+
 // MARK: - <Header>
 
 extension Object { // ! no space between Mark and extension!
@@ -596,6 +599,43 @@ extension Object { // ! no space between Mark and extension!
 ````
 
 ## To Throw or Not
+
+Prefer throwing over returning nil. Why?
+* `return` nil will cause the spread of using the optional `?` everywhere
+* it is true you will spread around `try` but a `try` can throw an explicit error, when you return nil as an error you will have to debug why.
+
+As en example look at looking up a model for a given `indexPath`.
+
+```swift
+enum ModelError: Error {
+	case notFound
+}
+class ViewModel {
+	func model(for indexPath: IndexPath) throws -> Country {
+				 guard indexPath.row > 0 else {
+						 throw ModelError.notFound
+				 }
+
+				 return models[offsetRow]
+	}
+}
+
+```
+
+Use in datasourde delegate, can be used for `UICollectionView & UITableView`, method name below is abriviated. 
+
+```swift
+func cellForRowAtIndexPath... {
+	do {
+		let cell = list.dequeu("modelCell", indexPath)
+		let model = try viewModel.model(for: indexPath)
+		cell.titleLabel.text= model.title
+		return cell
+	} catch {
+		return list.dequeu("emptyCell", indexPath)
+	}
+}
+```
 
 ## Language
 Use US English spelling to match Apple's API.
