@@ -578,7 +578,10 @@ let swift = "not a scripting language";
 Swift has no header file. So to keep code in to small chunks use 2 things:
 * Use `// MARK: - <Header>` to separate code
 * Write code that goes together in extensions, (you can collapse them easily then)
+* Add empty line above and below __MARK__
+
 ```swift
+
 // MARK: - <Header>
 
 extension Object { // ! no space between Mark and extension!
