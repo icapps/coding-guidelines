@@ -26,6 +26,7 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
 	* [switch over if](#Prefer `switch` over `if`)
 * [Semicolons](#semicolons)
 * [MARK](#mark)
+* [`Throw` versus `return nil`](#Throw` versus `return nil`)
 * [Language](#language)
 * [Credits](#credits)
 
@@ -596,6 +597,46 @@ extension Object { // ! no space between Mark and extension!
 }
 
 ````
+
+## Throw` versus `return nil`
+
+Prefer throwing over returning nil. Why?
+* `return` nil will cause the spread of using the optional `?` everywhere
+* it is true you will spread around `try` but a `try` can throw an explicit error, when you return nil as an error you will have to debug why.
+
+As en example look at looking up a model for a given `indexPath`.
+
+```swift
+enum ModelError: Error {
+	case notFound
+}
+class ViewModel {
+	func model(for indexPath: IndexPath) throws -> Country {
+				 guard indexPath.row > 0 else {
+						 throw ModelError.notFound
+				 }
+
+				 return models[offsetRow]
+	}
+}
+
+```
+
+Use in datasource delegate, can be used for `UICollectionView & UITableView`, method name below is abriviated.
+
+```swift
+func cellForRowAtIndexPath... {
+	do {
+		let cell = list.dequeue("modelCell", indexPath)
+		let model = try viewModel.model(for: indexPath)
+		cell.titleLabel.text= model.title
+		return cell
+	} catch {
+		return list.dequeue("emptyCell", indexPath)
+	}
+}
+```
+
 ## Language
 Use US English spelling to match Apple's API.
 
@@ -606,7 +647,7 @@ let color = "red"
 
 **Not Preferred:**
 ```swift
-let colour = "red"
+let color = "red"
 ```
 
 ## Credits
