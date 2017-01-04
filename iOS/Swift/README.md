@@ -26,7 +26,7 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
 	* [switch over if](#Prefer `switch` over `if`)
 * [Semicolons](#semicolons)
 * [MARK](#mark)
-* [To Throw or Not](#To Throw or Not)
+* [`Throw` versus `return nil`](#Throw` versus `return nil`)
 * [Language](#language)
 * [Credits](#credits)
 
@@ -598,7 +598,7 @@ extension Object { // ! no space between Mark and extension!
 
 ````
 
-## To Throw or Not
+## Throw` versus `return nil`
 
 Prefer throwing over returning nil. Why?
 * `return` nil will cause the spread of using the optional `?` everywhere
@@ -622,7 +622,7 @@ class ViewModel {
 
 ```
 
-Use in datasourde delegate, can be used for `UICollectionView & UITableView`, method name below is abriviated. 
+Use in datasourde delegate, can be used for `UICollectionView & UITableView`, method name below is abriviated.
 
 ```swift
 func cellForRowAtIndexPath... {
