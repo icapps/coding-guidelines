@@ -18,13 +18,7 @@ excluded:
   - ./Pods
 
 disabled_rules:
-  - line_length
-  - file_length
-  - function_body_length
-  - type_body_length
   - trailing_whitespace
-  - variable_name
-  - valid_docs
 ```
 
 Running `swiftlint` will check your code! 🙌
