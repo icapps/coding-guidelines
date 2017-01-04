@@ -622,17 +622,17 @@ class ViewModel {
 
 ```
 
-Use in datasourde delegate, can be used for `UICollectionView & UITableView`, method name below is abriviated.
+Use in datasource delegate, can be used for `UICollectionView & UITableView`, method name below is abriviated.
 
 ```swift
 func cellForRowAtIndexPath... {
 	do {
-		let cell = list.dequeu("modelCell", indexPath)
+		let cell = list.dequeue("modelCell", indexPath)
 		let model = try viewModel.model(for: indexPath)
 		cell.titleLabel.text= model.title
 		return cell
 	} catch {
-		return list.dequeu("emptyCell", indexPath)
+		return list.dequeue("emptyCell", indexPath)
 	}
 }
 ```
@@ -647,7 +647,7 @@ let color = "red"
 
 **Not Preferred:**
 ```swift
-let colour = "red"
+let color = "red"
 ```
 
 ## Credits
