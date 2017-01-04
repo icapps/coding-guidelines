@@ -1,24 +1,24 @@
 # Swiftlint
 
-A very good project on github is [Swiftlint](https://github.com/realm/SwiftLint)
 
-Install this in your projects to keep them clean. More info on Swiftlint github.
+[Swiftlint](https://github.com/realm/SwiftLint) is a very nice and clean command line tool to check if your code is according to the guidelines. But Swiftlint doesn't do everything our way. That is why below we included an example configuration file.
 
-As an example you can use a `.swiftlint.yml` file to customize the rules you want and don't want.
+## Setup
+
+You can install Swiftlint with Homebrew by running  the following command:
+
+    brew install swiftlint
+
+## Configuration
+
+Here is our configuration. Place the contents below in a `.swiftlint.yml` file in the root of your project.
 
 ```yml
 excluded:
   - ./Pods
 
 disabled_rules:
-  - variable_name
-  - type_name
-  - void_return
-  - closure_parameter_position
-
-line_length:
-  - 180
-
-function_body_length:
-  - 200
+  - trailing_whitespace
 ```
+
+Running `swiftlint` will check your code! 🙌
