@@ -647,7 +647,7 @@ let color = "red"
 
 **Not Preferred:**
 ```swift
-let color = "red"
+let colour = "red"
 ```
 
 ## Credits
