@@ -1,0 +1,14 @@
+.m-navbar {
+
+  display: block;
+
+  .m-navbar__list {
+    border-bottom: $navbar-list-border;
+  }
+
+  .m-navbar__list__item {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+}

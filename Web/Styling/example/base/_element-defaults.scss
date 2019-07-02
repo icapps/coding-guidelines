@@ -1,0 +1,13 @@
+html {
+  @include prefix("box-sizing", "border-box");
+}
+
+*, *:before, *:after {
+  @include prefix("box-sizing", "inherit");
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-default;
+  color: $text-color-default;
+  margin: 0;
+}
